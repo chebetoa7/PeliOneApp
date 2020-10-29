@@ -1,0 +1,425 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PeliOne.Views.MainPageMovi">
+    <ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3.333*"/>
+                <RowDefinition Height="3.333*"/>
+                <RowDefinition Height="3.333*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3.333*"/>
+                <ColumnDefinition Width="3.333*"/>
+                <ColumnDefinition Width="3.333*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Pantalla principal donde se muestra la lista de videos-->
+            <ScrollView x:Name="stkPrincipal"
+                         Grid.Column="0"
+                         Grid.Row="0"
+                         Grid.ColumnSpan="3"
+                         Grid.RowSpan="3"
+                         BackgroundColor="#01b4e4"
+                         >
+
+                <!--Region para dividir las pantallas entre la busqueda y la lista de peliculas-->
+                <Grid VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150"/>
+                        <RowDefinition Height="670"/>
+                        <RowDefinition Height="0.01*"/>
+                    </Grid.RowDefinitions>
+                    <StackLayout x:Name="stk_Superior"
+                                Grid.Row="0"
+                                BackgroundColor="#01b4e4"
+                                Padding="10"
+                             >
+
+                        <StackLayout 
+                                    BackgroundColor="Transparent"
+                                    HorizontalOptions="CenterAndExpand"
+                                
+                             >
+                            <Label Text="Hello, What do you"
+                               TextColor="White"
+                               FontAttributes="Bold"
+                               FontSize="25"
+                               />
+                            <Label Text="want to match ? "
+                               TextColor="White"
+                               FontAttributes="Bold"
+                               FontSize="25"
+                               Margin="-15"
+                               />
+
+
+                        </StackLayout>
+
+                        <StackLayout Margin="10"
+                                     Padding="10"
+                                     BackgroundColor="Transparent">
+                            <Frame HeightRequest="14"
+                                    OutlineColor="LightGray"
+                                    IsClippedToBounds="True"
+                                    BackgroundColor="Transparent"
+                                    CornerRadius="25">
+                                <Frame.Margin>
+                                    <OnPlatform x:TypeArguments="Thickness" 
+                                    Android="0" />
+                                </Frame.Margin>
+
+                                <Label Text="Share..." FontSize="13"
+                                       TextColor="White"/>
+
+                            </Frame>
+                        </StackLayout>
+
+
+                    </StackLayout>
+
+                    <StackLayout x:Name="stk_InferiorList"
+                             Grid.Row="1"
+                                WidthRequest="200"
+                                HeightRequest="800"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="FillAndExpand"
+                             BackgroundColor="Transparent">
+
+                        <Frame VerticalOptions="FillAndExpand"
+                               HorizontalOptions="FillAndExpand"
+                                    OutlineColor="#0d253f"
+                                    BackgroundColor="#0d253f"
+                                    CornerRadius="25">
+                            <Frame.Margin >
+                                <OnPlatform x:TypeArguments="Thickness" 
+                                    Android="0" />
+                            </Frame.Margin>
+
+                            <ScrollView>
+                                <Grid>
+                                    <Grid.RowDefinitions >
+                                        <RowDefinition Height="3.333*"/>
+                                        <RowDefinition Height="3.333*"/>
+                                        <RowDefinition Height="3.333*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <StackLayout Grid.Row="0" Padding="5" 
+                                                 HeightRequest="200"
+                                                 BackgroundColor="Transparent">
+
+                                        <Label Text="TOP RATED"
+                                               FontAttributes="Bold"
+                                               FontSize="13"
+                                               Margin="5"
+                                               TextColor="White"></Label>
+
+                                        <CarouselView x:Name="clwMovie" EmptyView="No items"
+                                            ItemsSource="{Binding clwMovie}">
+                                            <CarouselView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout >
+                                                        <Frame  Margin="5"
+                                                           VerticalOptions="CenterAndExpand"
+                                                           HeightRequest="180"
+                                                           Padding="0" 
+                                                           HasShadow="false"
+                                                           IsClippedToBounds="true"
+                                                           CornerRadius="10"
+                                                           BackgroundColor="Transparent">
+
+                                                            <StackLayout 
+                                                                         VerticalOptions="FillAndExpand"
+                                                                         HorizontalOptions="FillAndExpand">
+
+                                                                <Grid  VerticalOptions="FillAndExpand"
+                                                                         HorizontalOptions="FillAndExpand">
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="3.333*"/>
+                                                                        <ColumnDefinition Width="3.333*"/>
+                                                                        <ColumnDefinition Width="3.333*"/>
+                                                                    </Grid.ColumnDefinitions>
+
+                                                                    <StackLayout Grid.Column="0" Orientation="Vertical">
+                                                                        <StackLayout.GestureRecognizers>
+                                                                            <TapGestureRecognizer x:Name="tapImage1"
+                                                                                                  Tapped="tapImage1_Tapped"
+                                                                                                  CommandParameter="{Binding Date1}" />
+                                                                        </StackLayout.GestureRecognizers>
+
+                                                                        <Image Source="{Binding ImageUrl}"
+                                                                               Aspect="AspectFill"
+                                                                               HeightRequest="110"
+                                                                               WidthRequest="110"
+                                                                               VerticalOptions="Center"
+                                                                               HorizontalOptions="Center" />
+                                                                        <Label Text="{Binding Name1}"
+                                                                               
+                                                                               HorizontalOptions="Center"/>
+                                                                    </StackLayout>
+                                                                    <StackLayout Grid.Column="1">
+                                                                        <StackLayout.GestureRecognizers>
+                                                                            <TapGestureRecognizer 
+                                                                                                  Tapped="tapImage1_Tapped"
+                                                                                                  CommandParameter="{Binding Date2}" />
+                                                                        </StackLayout.GestureRecognizers>
+                                                                        <Image Source="{Binding ImageUr2}"
+                                                                               Aspect="AspectFill"
+                                                                               HeightRequest="110"
+                                                                               WidthRequest="110"
+                                                                               VerticalOptions="Center"
+                                                                               HorizontalOptions="Center" />
+                                                                        <Label Text="{Binding Name2}" HorizontalOptions="Center"/>
+                                                                    </StackLayout>
+                                                                    <StackLayout Grid.Column="2">
+                                                                        <StackLayout.GestureRecognizers>
+                                                                            <TapGestureRecognizer 
+                                                                                                  Tapped="tapImage1_Tapped"
+                                                                                                  CommandParameter="{Binding Date3}" />
+                                                                        </StackLayout.GestureRecognizers>
+                                                                        <Image Source="{Binding ImageUr3}"
+                                                                               Aspect="AspectFill"
+                                                                               HeightRequest="110"
+                                                                               WidthRequest="110"
+                                                                               VerticalOptions="Center"
+                                                                               HorizontalOptions="Center" />
+                                                                        <Label Text="{Binding Name3}" HorizontalOptions="Center"/>
+                                                                    </StackLayout>
+                                                                </Grid>
+                                                                
+                                                                
+                                                            </StackLayout>
+
+                                                        </Frame>
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </CarouselView.ItemTemplate>
+                                        </CarouselView>
+
+
+                                    </StackLayout>
+                                    <StackLayout Grid.Row="1"
+                                                 Padding="5" 
+                                                 HeightRequest="200"
+                                                 BackgroundColor="Transparent">
+
+                                        <Label Text="UPCOMING"
+                                               FontAttributes="Bold"
+                                               FontSize="13"
+                                               Margin="5"
+                                               TextColor="White"></Label>
+
+                                        <CarouselView x:Name="clwMovieUpcoming"
+                                                      EmptyView="No item"
+                                            ItemsSource="{Binding clwMovieUpcoming}">
+                                            <CarouselView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout >
+                                                        <Frame  Margin="5"
+                                                           VerticalOptions="CenterAndExpand"
+                                                           HeightRequest="180"
+                                                           Padding="0" 
+                                                           HasShadow="false"
+                                                           IsClippedToBounds="true"
+                                                           CornerRadius="10"
+                                                           BackgroundColor="Transparent">
+
+                                                            <StackLayout 
+                                                                         VerticalOptions="FillAndExpand"
+                                                                         HorizontalOptions="FillAndExpand">
+
+                                                                <Grid  VerticalOptions="FillAndExpand"
+                                                                         HorizontalOptions="FillAndExpand">
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="3.333*"/>
+                                                                        <ColumnDefinition Width="3.333*"/>
+                                                                        <ColumnDefinition Width="3.333*"/>
+                                                                    </Grid.ColumnDefinitions>
+
+                                                                    <StackLayout Grid.Column="0" Orientation="Vertical">
+                                                                        <StackLayout.GestureRecognizers>
+                                                                            <TapGestureRecognizer 
+                                                                                                  Tapped="tapImage1_Tapped"
+                                                                                                  CommandParameter="{Binding Date1}" />
+                                                                        </StackLayout.GestureRecognizers>
+                                                                        <Image Source="{Binding ImageUrl}"
+                                                                               Aspect="AspectFill"
+                                                                               HeightRequest="110"
+                                                                               WidthRequest="110"
+                                                                               VerticalOptions="Center"
+                                                                               HorizontalOptions="Center" />
+                                                                        <Label Text="{Binding Name1}" HorizontalOptions="Center"/>
+                                                                    </StackLayout>
+                                                                    <StackLayout Grid.Column="1">
+                                                                        <StackLayout.GestureRecognizers>
+                                                                            <TapGestureRecognizer 
+                                                                                                  Tapped="tapImage1_Tapped"
+                                                                                                  CommandParameter="{Binding Date2}" />
+                                                                        </StackLayout.GestureRecognizers>
+                                                                        <Image Source="{Binding ImageUr2}"
+                                                                               Aspect="AspectFill"
+                                                                               HeightRequest="110"
+                                                                               WidthRequest="110"
+                                                                               VerticalOptions="Center"
+                                                                               HorizontalOptions="Center" />
+                                                                        <Label Text="{Binding Name2}" HorizontalOptions="Center"/>
+                                                                    </StackLayout>
+                                                                    <StackLayout Grid.Column="2">
+                                                                        <StackLayout.GestureRecognizers>
+                                                                            <TapGestureRecognizer 
+                                                                                                  Tapped="tapImage1_Tapped"
+                                                                                                  CommandParameter="{Binding Date3}" />
+                                                                        </StackLayout.GestureRecognizers>
+                                                                        <Image Source="{Binding ImageUr3}"
+                                                                               Aspect="AspectFill"
+                                                                               HeightRequest="110"
+                                                                               WidthRequest="110"
+                                                                               VerticalOptions="Center"
+                                                                               HorizontalOptions="Center" />
+                                                                        <Label Text="{Binding Name3}" HorizontalOptions="Center"/>
+                                                                    </StackLayout>
+                                                                </Grid>
+
+
+                                                            </StackLayout>
+
+                                                        </Frame>
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </CarouselView.ItemTemplate>
+                                        </CarouselView>
+                                    </StackLayout>
+                                    <StackLayout Grid.Row="2"
+                                                 Padding="5" 
+                                                 HeightRequest="200"
+                                                 BackgroundColor="Transparent">
+
+                                        <Label Text="POPULAR"
+                                               FontAttributes="Bold"
+                                               FontSize="13"
+                                               Margin="5"
+                                               TextColor="White"></Label>
+
+                                        <CarouselView x:Name="clwMoviePopular"
+                                                      EmptyView="No item"
+                                            ItemsSource="{Binding clwMoviePopular}">
+                                            <CarouselView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout >
+                                                        <Frame  Margin="5"
+                                                           VerticalOptions="CenterAndExpand"
+                                                           HeightRequest="180"
+                                                           Padding="0" 
+                                                           HasShadow="false"
+                                                           IsClippedToBounds="true"
+                                                           CornerRadius="10"
+                                                           BackgroundColor="Transparent">
+
+                                                            <StackLayout 
+                                                                         VerticalOptions="FillAndExpand"
+                                                                         HorizontalOptions="FillAndExpand">
+
+                                                                <Grid  VerticalOptions="FillAndExpand"
+                                                                         HorizontalOptions="FillAndExpand">
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="3.333*"/>
+                                                                        <ColumnDefinition Width="3.333*"/>
+                                                                        <ColumnDefinition Width="3.333*"/>
+                                                                    </Grid.ColumnDefinitions>
+
+                                                                    <StackLayout Grid.Column="0" Orientation="Vertical">
+                                                                        <StackLayout.GestureRecognizers>
+                                                                            <TapGestureRecognizer 
+                                                                                                  Tapped="tapImage1_Tapped"
+                                                                                                  CommandParameter="{Binding Date1}" />
+                                                                        </StackLayout.GestureRecognizers>
+                                                                        <Image Source="{Binding ImageUrl}"
+                                                                               Aspect="AspectFill"
+                                                                               HeightRequest="110"
+                                                                               WidthRequest="110"
+                                                                               VerticalOptions="Center"
+                                                                               HorizontalOptions="Center" />
+                                                                        <Label Text="{Binding Name1}" HorizontalOptions="Center"/>
+                                                                    </StackLayout>
+                                                                    <StackLayout Grid.Column="1">
+                                                                        <StackLayout.GestureRecognizers>
+                                                                            <TapGestureRecognizer 
+                                                                                                  Tapped="tapImage1_Tapped"
+                                                                                                  CommandParameter="{Binding Date2}" />
+                                                                        </StackLayout.GestureRecognizers>
+                                                                        <Image Source="{Binding ImageUr2}"
+                                                                               Aspect="AspectFill"
+                                                                               HeightRequest="110"
+                                                                               WidthRequest="110"
+                                                                               VerticalOptions="Center"
+                                                                               HorizontalOptions="Center" />
+                                                                        <Label Text="{Binding Name2}" HorizontalOptions="Center"/>
+                                                                    </StackLayout>
+                                                                    <StackLayout Grid.Column="2">
+                                                                        <StackLayout.GestureRecognizers>
+                                                                            <TapGestureRecognizer 
+                                                                                                  Tapped="tapImage1_Tapped"
+                                                                                                  CommandParameter="{Binding Date3}" />
+                                                                        </StackLayout.GestureRecognizers>
+                                                                        <Image Source="{Binding ImageUr3}"
+                                                                               Aspect="AspectFill"
+                                                                               HeightRequest="110"
+                                                                               WidthRequest="110"
+                                                                               VerticalOptions="Center"
+                                                                               HorizontalOptions="Center" />
+                                                                        <Label Text="{Binding Name3}" HorizontalOptions="Center"/>
+                                                                    </StackLayout>
+                                                                </Grid>
+
+
+                                                            </StackLayout>
+
+                                                        </Frame>
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </CarouselView.ItemTemplate>
+                                        </CarouselView>
+                                    </StackLayout>
+
+                                </Grid>
+
+
+                            </ScrollView>
+
+
+
+                        </Frame>
+
+
+                    </StackLayout>
+
+                    <StackLayout Grid.Row="2" Margin="-25"
+                                 BackgroundColor="#0d253f">
+                        <Label Text=" "/>
+                    </StackLayout>
+                </Grid>
+
+
+
+
+            </ScrollView>
+
+            <!-- Modal para hacer la carga -->
+            <StackLayout Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="3" 
+                         x:Name="lytEspera" IsVisible="False" BackgroundColor="#C0808080">
+                <StackLayout VerticalOptions="CenterAndExpand" Padding="5" Spacing="0"
+                             Orientation="Vertical" HorizontalOptions="CenterAndExpand" 
+                             BackgroundColor="Transparent" >
+                    <ContentView BackgroundColor="Transparent" Padding="10, 0" IsVisible="True" >
+                        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                            <StackLayout VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="Transparent">
+                                <ActivityIndicator BackgroundColor="Transparent" x:Name="actCarga"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </ContentView>
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

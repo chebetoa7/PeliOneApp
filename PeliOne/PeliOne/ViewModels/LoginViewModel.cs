@@ -17,7 +17,7 @@ namespace PeliOne.ViewModels
 
         private void OnLoginClicked(object obj)
         {
-            App.Current.MainPage = new NavigationPage(new ListPageMain());
+            App.Current.MainPage = new NavigationPage(new MainPageMovi());
         }
     }
 }

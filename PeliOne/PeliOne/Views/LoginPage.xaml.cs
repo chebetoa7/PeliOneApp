@@ -12,10 +12,28 @@ namespace PeliOne.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
+        #region Builder
         public LoginPage()
         {
             InitializeComponent();
+            LoadPageContent();
             this.BindingContext = new LoginViewModel();
         }
+        #endregion
+
+        #region Methods
+
+        //Carga todos los datos iniciales
+        public void LoadPageContent() 
+        {
+            try 
+            {
+                nameTitle.Text = "PeliOne";
+            } catch (Exception exM) 
+            {
+                Console.WriteLine("Error verificar: \n" + exM.Message + "\n");
+            }
+        }
+        #endregion
     }
 }

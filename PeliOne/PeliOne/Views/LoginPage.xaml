@@ -6,9 +6,25 @@
              mc:Ignorable="d"
              x:Class="PeliOne.Views.LoginPage"
              Shell.NavBarIsVisible="False">
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" VerticalOptions="Center" Spacing="10">
+            <Label x:Name="nameTitle"
+                   HorizontalOptions="CenterAndExpand" 
+                   Text=""
+                   BackgroundColor="#01b4e4"
+                   TextColor="#000000"
+                   FontFamily="Roboto"
+                   FontAttributes="Bold"
+                   FontSize="20">
+            </Label>
+        </StackLayout>
+    </NavigationPage.TitleView>
     <ContentPage.Content>
         <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-            <Button VerticalOptions="Center" Text="Ingresar" Command="{Binding LoginCommand}"/>
+            <Button VerticalOptions="Center" 
+                    Text="Ingresar" 
+                    BackgroundColor="#01b4e4"
+                    Command="{Binding LoginCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
